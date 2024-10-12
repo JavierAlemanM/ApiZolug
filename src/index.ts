@@ -11,7 +11,7 @@ app.use('/api', userRoutes);
 app.use('/api', clientRoutes);
 app.use('/api', authRoutes);
 app.get('/', (req: Request, res: Response) => {
-  res.send('¡Bienvenido a la API!');
+  res.send('¡Bienvenido a la API zolug!');
 });
 
 app.listen(port, () => {
