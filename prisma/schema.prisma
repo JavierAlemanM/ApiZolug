@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://zolug_owner:iP9uRvXQ1Hgn@ep-spring-violet-a5za1xih-pooler.us-east-2.aws.neon.tech/zolug?sslmode=require"
 }
 
 
