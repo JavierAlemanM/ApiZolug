@@ -36,7 +36,7 @@ export const clientController = {
 		try {
 			const { id } = req.params;
 			const client = await prisma.clients.findUnique({
-				where: { documentId: id },
+				where: { documentId: parseInt(id) },
 			});
 			if (client) {
 				res.json(client);
@@ -54,7 +54,7 @@ export const clientController = {
 			const { id } = req.params;
 			const { name, isActive } = req.body;
 			const updatedClient = await prisma.clients.update({
-				where: { documentId: id },
+				where: { documentId: parseInt(id) },
 				data: {
 					name,
 					isActive: isActive !== undefined ? isActive : undefined,
@@ -71,7 +71,7 @@ export const clientController = {
 		try {
 			const { id } = req.params;
 			await prisma.clients.delete({
-				where: { documentId: id },
+				where: { documentId: parseInt(id) },
 			});
 			res.status(204).send();
 		} catch (error) {
