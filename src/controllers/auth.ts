@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-import { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
+import { PrismaClient } from "@prisma/client";
+import { Request, Response } from "express";
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
@@ -13,20 +13,19 @@ export const authController = {
 			});
 
 			if (!user) {
-				res.status(401).json({ message: 'Credenciales inválidas' });
+				res.status(401).json({ message: "Credenciales inválidas" });
 				return;
 			}
-			
+
 			const isPasswordValid = await bcrypt.compare(password, user.password);
 
 			if (!isPasswordValid) {
-			  res.status(401).json({ message: 'Credenciales inválidas' });
-			  return;
+				res.status(401).json({ message: "Credenciales inválidas" });
+				return;
 			}
 
 			const { password: _, ...userWithoutPassword } = user;
-			res.json({ message: 'Login exitoso', user: userWithoutPassword });
-	 
+			res.json({ message: "Login exitoso", user: userWithoutPassword });
 		} catch (error) {
 			res.status(500).json({ error: (error as Error).message });
 		}
