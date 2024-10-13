@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
+import { DateTime } from "luxon";
 
 const prisma = new PrismaClient();
 
@@ -8,11 +9,15 @@ export const clientController = {
 	createClient: async (req: Request, res: Response) => {
 		try {
 			const { documentId, name, isActive } = req.body;
+			let colombiaTime = DateTime.now().setZone("America/Bogota");
+			colombiaTime = colombiaTime.minus({ hours: 5 });
 			const client = await prisma.clients.create({
 				data: {
-					documentId,
+					documentId: parseInt(documentId),
 					name,
 					isActive: isActive !== undefined ? isActive : true,
+					createdAt: colombiaTime.toJSDate(),
+					updatedAt: colombiaTime.toJSDate(),
 				},
 			});
 			res.status(201).json(client);
@@ -36,7 +41,7 @@ export const clientController = {
 		try {
 			const { id } = req.params;
 			const client = await prisma.clients.findUnique({
-				where: { documentId: id },
+				where: { documentId: parseInt(id) },
 			});
 			if (client) {
 				res.json(client);
@@ -54,7 +59,7 @@ export const clientController = {
 			const { id } = req.params;
 			const { name, isActive } = req.body;
 			const updatedClient = await prisma.clients.update({
-				where: { documentId: id },
+				where: { documentId: parseInt(id) },
 				data: {
 					name,
 					isActive: isActive !== undefined ? isActive : undefined,
@@ -71,7 +76,7 @@ export const clientController = {
 		try {
 			const { id } = req.params;
 			await prisma.clients.delete({
-				where: { documentId: id },
+				where: { documentId: parseInt(id) },
 			});
 			res.status(204).send();
 		} catch (error) {
