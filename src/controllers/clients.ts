@@ -7,10 +7,10 @@ export const clientController = {
 	// Crear un nuevo cliente
 	createClient: async (req: Request, res: Response) => {
 		try {
-			const { identificationId, name, isActive } = req.body;
+			const { documentId, name, isActive } = req.body;
 			const client = await prisma.clients.create({
 				data: {
-					identificationId,
+					documentId,
 					name,
 					isActive: isActive !== undefined ? isActive : true,
 				},
@@ -36,7 +36,7 @@ export const clientController = {
 		try {
 			const { id } = req.params;
 			const client = await prisma.clients.findUnique({
-				where: { identificationId: id },
+				where: { documentId: id },
 			});
 			if (client) {
 				res.json(client);
@@ -54,7 +54,7 @@ export const clientController = {
 			const { id } = req.params;
 			const { name, isActive } = req.body;
 			const updatedClient = await prisma.clients.update({
-				where: { identificationId: id },
+				where: { documentId: id },
 				data: {
 					name,
 					isActive: isActive !== undefined ? isActive : undefined,
@@ -71,7 +71,7 @@ export const clientController = {
 		try {
 			const { id } = req.params;
 			await prisma.clients.delete({
-				where: { identificationId: id },
+				where: { documentId: id },
 			});
 			res.status(204).send();
 		} catch (error) {

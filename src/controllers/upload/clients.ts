@@ -21,7 +21,7 @@ export const clientController = {
 			const clients = await Promise.all(
 				data.map(async (row: any) => {
 					// Verificar que los campos requeridos estén presentes
-					if (!row.identificationId || !row.name) {
+					if (!row.documentId || !row.name) {
 						throw new Error(
 							`Datos incompletos en la fila: ${JSON.stringify(row)}`,
 						);
@@ -32,13 +32,13 @@ export const clientController = {
 
 					try {
 						return await prisma.clients.upsert({
-							where: { identificationId: String(row.identificationId) },
+							where: { documentId: parseInt(row.documentId) },
 							update: {
 								name: String(row.name),
 								updatedAt: colombiaTime.toJSDate(),
 							},
 							create: {
-								identificationId: String(row.identificationId),
+								documentId: parseInt(row.documentId),
 								name: String(row.name),
 								isActive:
 									row.isActive !== undefined
