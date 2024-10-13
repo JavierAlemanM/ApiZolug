@@ -7,12 +7,11 @@ export const clientController = {
   // Crear un nuevo cliente
   createClient: async (req: Request, res: Response) => {
     try {
-      const { identificationId, name, lastName, isActive } = req.body;
+      const { identificationId, name,  isActive } = req.body;
       const client = await prisma.clients.create({
         data: {
           identificationId,
           name,
-          lastName,
           isActive: isActive !== undefined ? isActive : true,
         },
       });
@@ -53,12 +52,11 @@ export const clientController = {
   updateClient: async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      const { name, lastName, isActive } = req.body;
+      const { name,  isActive } = req.body;
       const updatedClient = await prisma.clients.update({
         where: { identificationId: id },
         data: { 
-          name, 
-          lastName,
+          name,  
           isActive: isActive !== undefined ? isActive : undefined,
         },
       });

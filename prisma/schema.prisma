@@ -27,9 +27,8 @@ model Users {
 }
 
 model Clients {
-  identificationId String   @id @unique
+  documentId  Int   @id @unique
   name             String
-  lastName         String
   isActive         Boolean  @default(true)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
