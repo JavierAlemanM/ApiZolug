@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
+import { DateTime } from "luxon";
 
 const prisma = new PrismaClient();
 
@@ -8,6 +9,8 @@ export const userController = {
 	createUser: async (req: Request, res: Response) => {
 		try {
 			const { documentId, names, email, phone, password, roles } = req.body;
+			let colombiaTime = DateTime.now().setZone("America/Bogota");
+			colombiaTime = colombiaTime.minus({ hours: 5 });
 			const hashedPassword = await bcrypt.hash(password, 10);
 			const user = await prisma.users.create({
 				data: {
@@ -17,6 +20,8 @@ export const userController = {
 					phone,
 					password: hashedPassword,
 					roles: roles as string[],
+					createdAt: colombiaTime.toJSDate(),
+					updatedAt: colombiaTime.toJSDate(),
 				},
 			});
 			const { password: _, ...userWithoutPassword } = user;
