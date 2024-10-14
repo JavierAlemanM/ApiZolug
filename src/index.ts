@@ -15,6 +15,8 @@ import emailRoutes from "./routes/emails";
 import uploadEmails from "./routes/upload/emails";
 import phoneRoutes from "./routes/phones";
 import uploadPhones from "./routes/upload/phones";
+import uploadBases from "./routes/upload/bases";
+import baseRoutes from "./routes/bases";
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
@@ -28,6 +30,7 @@ app.use("/api", decilRoutes);
 app.use("/api", balanceRoutes);
 app.use("/api", emailRoutes);
 app.use("/api", phoneRoutes);
+app.use("/api", baseRoutes);
 app.use("/api", authRoutes);
 app.use("/api", uploadClients);
 app.use("/api", uploadCampaigns);
@@ -36,6 +39,7 @@ app.use("/api", uploadDecils);
 app.use("/api", uploadBalances);
 app.use("/api", uploadEmails);
 app.use("/api", uploadPhones);
+app.use("/api", uploadBases);
 app.get("/", (req: Request, res: Response) => {
 	res.send("¡Bienvenido a la API zolug!");
 });
