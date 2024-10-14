@@ -9,6 +9,10 @@ import generalRoutes from "./routes/generals";
 import uploadGenerals from "./routes/upload/generals";
 import uploadDecils from "./routes/upload/decils";
 import decilRoutes from "./routes/decils";
+import uploadBalances from "./routes/upload/balances";
+import balanceRoutes from "./routes/balances";
+import emailRoutes from "./routes/emails";
+import uploadEmails from "./routes/upload/emails";
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
@@ -19,11 +23,15 @@ app.use("/api", clientRoutes);
 app.use("/api", campaignRoutes);
 app.use("/api", generalRoutes);
 app.use("/api", decilRoutes);
+app.use("/api", balanceRoutes);
+app.use("/api", emailRoutes);
 app.use("/api", authRoutes);
 app.use("/api", uploadClients);
 app.use("/api", uploadCampaigns);
 app.use("/api", uploadGenerals);
 app.use("/api", uploadDecils);
+app.use("/api", uploadBalances);
+app.use("/api", uploadEmails);
 app.get("/", (req: Request, res: Response) => {
 	res.send("¡Bienvenido a la API zolug!");
 });
