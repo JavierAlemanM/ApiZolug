@@ -99,7 +99,7 @@ model Balance {
    operation Int
    bank      Int
    capital   Float
-   TOTAL     Float
+   total     Float
    createdAt DateTime
    updatedAt DateTime
 }
