@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,4 +5,330 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Assignment {
+  id         Int      @id @unique
+  operation  Int
+  bank       Int
+  assignment String
+  createdAt  DateTime
+  updatedAt  DateTime
+}
+
+model Balance {
+  id        Int      @id @unique
+  operation Int
+  bank      Int
+  capital   Float
+  total     Float
+  createdAt DateTime
+  updatedAt DateTime
+}
+
+model Base {
+  id         Int      @id @unique
+  operation  Int
+  bank       Int
+  account    Int
+  expiration String
+  disburse   Float
+  office     String
+  dependence String
+  isActive   Boolean
+  createdAt  DateTime
+  updatedAt  DateTime
+}
+
+model Campaign {
+  id        Int      @id @unique
+  operation Int
+  bank      Int
+  campaign  String
+  createdAt DateTime
+  updatedAt DateTime
+}
+
+model Clients {
+  documentId Int      @id @unique
+  name       String
+  isActive   Boolean  @default(true)
+  createdAt  DateTime
+  updatedAt  DateTime
+}
+
+model Decil {
+  id        Int      @id @unique
+  operation Int
+  bank      Int
+  decil     Int
+  createdAt DateTime
+  updatedAt DateTime
+}
+
+model Emails {
+  id          Int      @id @default(autoincrement())
+  documentId  Int
+  email       String
+  description String
+  isActive    Boolean
+  createdAt   DateTime
+  updatedAt   DateTime
+}
+
+model Employment {
+  id           Int      @id @default(autoincrement())
+  documentId   Int
+  company      String
+  documentType String
+  document     String
+  salary       String
+  city         String
+  direction    String
+  phone        String
+  email        String
+  detail       String
+  assignment   String
+  createdAt    DateTime
+  updatedAt    DateTime
+}
+
+model Eps {
+  id         Int      @id @default(autoincrement())
+  documentId Int
+  name       String
+  type       String
+  detail     String
+  assignment String
+  createdAt  DateTime
+  updatedAt  DateTime
+}
+
+model General {
+  id         Int      @id @unique
+  operation  Int
+  bank       Int
+  state      String
+  substate   String
+  assignment String
+  createdAt  DateTime
+  updatedAt  DateTime
+}
+
+model Management {
+  id          Int      @id @default(autoincrement())
+  operation   Int
+  bank        Int
+  assignment  String
+  type        String
+  destiny     String
+  detail      String
+  channel     String
+  management  String
+  createStart DateTime
+  createEnd   DateTime
+  contrast    String
+  updatedAt   DateTime
+}
+
+model Payment {
+  id         Int      @id @default(autoincrement())
+  operation  Int
+  bank       Int
+  value      Int
+  assignment String
+  date       DateTime
+  createdAt  DateTime
+}
+
+model Phones {
+  id          Int      @id @default(autoincrement())
+  documentId  Int
+  phone       String
+  type        String
+  description String
+  isActive    Boolean
+  createdAt   DateTime
+  updatedAt   DateTime
+}
+
+model Properties {
+  id           Int      @id @default(autoincrement())
+  documentId   Int
+  property     String
+  enrollment   String
+  registration String
+  city         String
+  direction    String
+  detail       String
+  assignment   String
+  createdAt    DateTime
+  updatedAt    DateTime
+}
+
+model ReporManagement {
+  id         Int     @id @default(autoincrement())
+  documentId Int
+  assignment String
+  ges01      Int
+  ope01      Int
+  ges02      Int
+  ope02      Int
+  ges03      Int
+  ope03      Int
+  ges04      Int
+  ope04      Int
+  ges05      Int
+  ope05      Int
+  ges06      Int
+  ope06      Int
+  ges07      Int
+  ope07      Int
+  ges08      Int
+  ope08      Int
+  ges09      Int
+  ope09      Int
+  ges10      Int
+  ope10      Int
+  ges11      Int
+  ope11      Int
+  ges12      Int
+  ope12      Int
+  ges13      Int
+  ope13      Int
+  ges14      Int
+  ope14      Int
+  ges15      Int
+  ope15      Int
+  ges16      Int
+  ope16      Int
+  ges17      Int
+  ope17      Int
+  ges18      Int
+  ope18      Int
+  ges19      Int
+  ope19      Int
+  ges20      Int
+  ope20      Int
+  ges21      Int
+  ope21      Int
+  ges22      Int
+  ope22      Int
+  ges23      Int
+  ope23      Int
+  ges24      Int
+  ope24      Int
+  ges25      Int
+  ope25      Int
+  ges26      Int
+  ope26      Int
+  ges27      Int
+  ope27      Int
+  ges28      Int
+  ope28      Int
+  ges29      Int
+  ope29      Int
+  ges30      Int
+  ope30      Int
+  ges31      Int
+  ope31      Int
+  gesT       Int
+  opeT       Int
+  year       Int
+  month      Int
+  state      Boolean
+}
+
+model ReporManagementConsolidated {
+  id         Int     @id @default(autoincrement())
+  documentId Int
+  assignment String
+  ges01      Int
+  ope01      Int
+  ges02      Int
+  ope02      Int
+  ges03      Int
+  ope03      Int
+  ges04      Int
+  ope04      Int
+  ges05      Int
+  ope05      Int
+  ges06      Int
+  ope06      Int
+  ges07      Int
+  ope07      Int
+  ges08      Int
+  ope08      Int
+  ges09      Int
+  ope09      Int
+  ges10      Int
+  ope10      Int
+  ges11      Int
+  ope11      Int
+  ges12      Int
+  ope12      Int
+  ges13      Int
+  ope13      Int
+  ges14      Int
+  ope14      Int
+  ges15      Int
+  ope15      Int
+  ges16      Int
+  ope16      Int
+  ges17      Int
+  ope17      Int
+  ges18      Int
+  ope18      Int
+  ges19      Int
+  ope19      Int
+  ges20      Int
+  ope20      Int
+  ges21      Int
+  ope21      Int
+  ges22      Int
+  ope22      Int
+  ges23      Int
+  ope23      Int
+  ges24      Int
+  ope24      Int
+  ges25      Int
+  ope25      Int
+  ges26      Int
+  ope26      Int
+  ges27      Int
+  ope27      Int
+  ges28      Int
+  ope28      Int
+  ges29      Int
+  ope29      Int
+  ges30      Int
+  ope30      Int
+  ges31      Int
+  ope31      Int
+  gesT       Int
+  opeT       Int
+  year       Int
+  month      Int
+  state      Boolean
+}
+
+model Users {
+  documentId Int      @id @unique
+  names      String
+  email      String   @unique
+  phone      String   @unique
+  password   String
+  roles      String[]
+  isActive   Boolean  @default(true)
+  createdAt  DateTime
+  updatedAt  DateTime
+}
+
+model Wallet {
+  id        Int      @id @unique
+  operation Int
+  bank      Int
+  wallet    String
+  createdAt DateTime
+  updatedAt DateTime
 }
