@@ -318,10 +318,19 @@ model Users {
   email      String   @unique
   phone      String   @unique
   password   String
-  roles      String[]
+  roles      Roles[]
   isActive   Boolean  @default(true)
   createdAt  DateTime
   updatedAt  DateTime
+}
+
+model Roles{
+  id        Int      @id @unique
+  role      String
+  createdAt DateTime
+  updatedAt DateTime
+  idUser    Int
+  user      Users    @relation(fields: [idUser], references: [documentId])
 }
 
 model Wallet {
